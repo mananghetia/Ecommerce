@@ -1,54 +1,53 @@
-import React, { Fragment, useState, useEffect } from "react";
-import "./UpdatePassword.css";
-import Loader from "../layout/Loader/Loader";
-import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, updatePassword } from "../../actions/userAction";
-import { useAlert } from "react-alert";
+import React, { Fragment, useState, useEffect } from "react"
+import "./UpdatePassword.css"
+import Loader from "../layout/Loader/Loader"
+import { useDispatch, useSelector } from "react-redux"
+import { clearErrors, updatePassword } from "../../actions/userAction"
+import { useAlert } from "react-alert"
 import { useNavigate } from "react-router-dom"
-import { UPDATE_PASSWORD_RESET } from "../../constants/userConstants";
-import MetaData from "../layout/MetaData";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
-import LockIcon from "@material-ui/icons/Lock";
-import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import { UPDATE_PASSWORD_RESET } from "../../constants/userConstants"
+import MetaData from "../layout/MetaData"
+import LockOpenIcon from "@material-ui/icons/LockOpen"
+import LockIcon from "@material-ui/icons/Lock"
+import VpnKeyIcon from "@material-ui/icons/VpnKey"
 
 const UpdatePassword = () => {
     const dispatch = useDispatch()
     const alert = useAlert()
     const history = useNavigate()
-    const { error, isUpdated, loading } = useSelector((state) => state.profile);
+    const { error, isUpdated, loading } = useSelector((state) => state.profile)
 
-    const [oldPassword, setOldPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [oldPassword, setOldPassword] = useState("")
+    const [newPassword, setNewPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
 
     const updatePasswordSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
+        const myForm = new FormData()
 
-        const myForm = new FormData();
+        myForm.set("oldPassword", oldPassword)
+        myForm.set("newPassword", newPassword)
+        myForm.set("confirmPassword", confirmPassword)
 
-        myForm.set("oldPassword", oldPassword);
-        myForm.set("newPassword", newPassword);
-        myForm.set("confirmPassword", confirmPassword);
-
-        dispatch(updatePassword(myForm));
-    };
+        dispatch(updatePassword(myForm))
+    }
 
     useEffect(() => {
         if (error) {
-            alert.error(error);
-            dispatch(clearErrors());
+            alert.error(error)
+            dispatch(clearErrors())
         }
 
         if (isUpdated) {
-            alert.success("Profile Updated Successfully");
+            alert.success("Profile Updated Successfully")
 
-            history("/account");
+            history("/account")
 
             dispatch({
                 type: UPDATE_PASSWORD_RESET,
-            });
+            })
         }
-    }, [dispatch, error, alert, history, isUpdated]);
+    }, [dispatch, error, alert, history, isUpdated])
 
     return (
         <Fragment>
@@ -107,7 +106,7 @@ const UpdatePassword = () => {
                 </Fragment>
             )}
         </Fragment>
-    );
-};
+    )
+}
 
-export default UpdatePassword;
+export default UpdatePassword

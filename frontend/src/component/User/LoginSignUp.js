@@ -129,7 +129,7 @@ const LoginSignUp = () => {
                                         onChange={(e) => setLoginPassword(e.target.value)}
                                     />
                                 </div>
-                                <Link to="/password/forgot">Forget Password ?</Link>
+                                <Link to="/password/forgot">Forgot Password ?</Link>
                                 <input type="submit" value="Login" className="loginBtn" />
                             </form>
 
@@ -180,6 +180,7 @@ const LoginSignUp = () => {
                                         name="avatar"
                                         accept="image/*"
                                         onChange={registerDataChange}
+                                        required
                                     />
                                 </div>
                                 <input type="submit" value="Register" className="signUpBtn" />

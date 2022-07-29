@@ -1,6 +1,9 @@
 export const categories = [
+    "Phone",
     "Laptop",
-    "Footwear",
-    "Bottom",
-    "Tops",
+    "Men's Clothing",
+    "Women's Clothing",
+    "Men's Accessories",
+    "Women's Accessories",
+    "Other"
 ]

@@ -1,6 +1,6 @@
-import React from "react";
-import "./Contact.css";
-import { Button } from "@material-ui/core";
+import React from "react"
+import "./Contact.css"
+import { Button } from "@material-ui/core"
 
 const Contact = () => {
     return (
@@ -9,7 +9,7 @@ const Contact = () => {
                 <Button>Contact: mananghetia@gmail.com</Button>
             </a>
         </div>
-    );
-};
+    )
+}
 
-export default Contact;
+export default Contact

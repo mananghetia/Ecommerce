@@ -5,7 +5,7 @@ import { Typography } from "@material-ui/core"
 import { Link } from "react-router-dom"
 import { Doughnut, Line } from "react-chartjs-2"
 import { CategoryScale, LinearScale, PointElement, LineElement, Title, } from 'chart.js'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 
 import { useSelector, useDispatch } from "react-redux"
 import { getAdminProduct } from "../../actions/productAction"
@@ -28,7 +28,7 @@ const Dashboard = () => {
 
     products &&
         products.forEach((item) => {
-            if (item.Stock === 0) {
+            if (item.stock <= 0) {
                 outOfStock += 1
             }
         })
@@ -46,7 +46,7 @@ const Dashboard = () => {
         })
 
     const lineState = {
-        labels: ["Initial Amount", "Amount Earned"],
+        labels: ["Initial Amount", "Total Amount"],
         datasets: [
             {
                 label: "TOTAL AMOUNT",

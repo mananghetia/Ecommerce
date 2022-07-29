@@ -1,6 +1,6 @@
-import React from "react";
-import "./CartItemCard.css";
-import { Link } from "react-router-dom";
+import React from "react"
+import "./CartItemCard.css"
+import { Link } from "react-router-dom"
 
 const CartItemCard = ({ item, deleteCartItems }) => {
     return (
@@ -12,7 +12,7 @@ const CartItemCard = ({ item, deleteCartItems }) => {
                 <p onClick={() => deleteCartItems(item.product)}>Remove</p>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default CartItemCard;
+export default CartItemCard

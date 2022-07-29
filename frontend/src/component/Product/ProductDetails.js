@@ -80,12 +80,12 @@ const ProductDetails = () => {
             dispatch(clearErrors())
         }
         if (reviewError) {
-            alert.error(reviewError);
-            dispatch(clearErrors());
+            alert.error(reviewError)
+            dispatch(clearErrors())
         }
         if (success) {
-            alert.success("Review Submitted Successfully");
-            dispatch({ type: NEW_REVIEW_RESET });
+            alert.success("Review Submitted Successfully")
+            dispatch({ type: NEW_REVIEW_RESET })
         }
         dispatch(getProductDetails(param.id))
     }, [dispatch, param.id, error, alert, reviewError, success])

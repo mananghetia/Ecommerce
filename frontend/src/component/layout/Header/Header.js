@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
 import { ReactNavbar } from "overlay-navbar"
 import logo from "../../../images/logo.png"
-import { MdAccountBox } from "react-icons/md";
-import { ImSearch } from "react-icons/im";
-import { FiShoppingBag } from "react-icons/fi";
+import { MdAccountBox } from "react-icons/md"
+import { ImSearch } from "react-icons/im"
+import { FiShoppingBag } from "react-icons/fi"
 import "./Header.css"
 
 const options = {
@@ -47,10 +47,10 @@ const options = {
     cartIconColor: "rgba(35, 35, 35,0.8)",
     cartIconColorHover: "#eb4034",
     cartIconMargin: "1vmax",
-};
+}
 
 const Header = () => {
-    return <ReactNavbar {...options} />;
-};
+    return <ReactNavbar {...options} />
+}
 
-export default Header;
+export default Header

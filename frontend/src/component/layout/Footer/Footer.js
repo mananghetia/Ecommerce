@@ -1,7 +1,7 @@
-import React from "react";
-import playStore from "../../../images/playstore.png";
-import appStore from "../../../images/Appstore.png";
-import "./Footer.css";
+import React from "react"
+import playStore from "../../../images/playstore.png"
+import appStore from "../../../images/Appstore.png"
+import "./Footer.css"
 
 const Footer = () => {
     return (
@@ -26,7 +26,7 @@ const Footer = () => {
                 <a href="https://github.com/mananghetia">Github</a>
             </div>
         </footer>
-    );
-};
+    )
+}
 
-export default Footer;
+export default Footer

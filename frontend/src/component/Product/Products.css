@@ -11,9 +11,9 @@
 .products {
     display: flex;
     flex-wrap: wrap;
-    padding: 0 5vmax;
+    padding: 0 5vmax 0 8vmax;
     justify-content: center;
-    min-height: 30vh;
+    min-height: 40vh;
 }
 
 .paginationBox {
@@ -69,10 +69,10 @@
 }
 
 .filterBox {
-    width: 10vmax;
+    width: 12vmax;
     position: absolute;
-    top: 10vmax;
-    left: 4vmax;
+    top: 8vmax;
+    left: 3vmax;
 }
 
 .categoryBox {
@@ -82,21 +82,49 @@
 .category-link {
     list-style: none;
     color: rgba(0, 0, 0, 0.61);
-    font: 400 0.8vmax "Roboto";
+    font: 500 0.8vmax "Roboto";
     margin: 0.4vmax;
     cursor: pointer;
     transition: all 0.5s;
 }
 
 .category-link:hover {
-    color: tomato;
+    color: #0c1c78;
+    font: 500 1vmax "Roboto";
 }
+
 
 .filterBox>fieldset {
     border: 1px solid rgba(0, 0, 0, 0.329);
 }
 
+.searchBtn {
+    display: flex;
+    margin-top: 1.2vmax;
+}
+
+.searchBtn>button {
+    font: 500 1.3vmax "Roboto";
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    padding: 0.5vmax 0.8vmax;
+    cursor: pointer;
+    border-radius: 20px;
+    height: 3vmax;
+    width: 7vmax;
+    transition: all 0.5s;
+}
+
+.searchBtn>button:hover {
+    background-color: #0c1c78;
+}
+
 @media screen and (max-width: 600px) {
+    .products {
+        padding: 0 4vmax;
+    }
+
     .filterBox {
         width: 20vmax;
         position: static;
@@ -108,6 +136,16 @@
     }
 
     .category-link {
-        font: 400 1.8vmax "Roboto";
+        font: 500 1.8vmax "Roboto";
+    }
+
+    .category-link:hover {
+        font: 500 1.8vmax "Roboto";
+    }
+
+    .searchBtn>button {
+        width: 70%;
+        height: 5vmax;
+        font: 300 2vmax "Roboto";
     }
 }

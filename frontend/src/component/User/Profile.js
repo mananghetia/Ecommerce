@@ -50,6 +50,6 @@ const Profile = () => {
             )}
         </Fragment>
     )
-};
+}
 
-export default Profile;
+export default Profile

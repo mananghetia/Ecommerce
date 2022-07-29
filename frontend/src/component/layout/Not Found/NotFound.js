@@ -1,8 +1,8 @@
-import React from "react";
-import ErrorIcon from "@material-ui/icons/Error";
-import "./NotFound.css";
-import { Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import React from "react"
+import ErrorIcon from "@material-ui/icons/Error"
+import "./NotFound.css"
+import { Typography } from "@material-ui/core"
+import { Link } from "react-router-dom"
 
 const NotFound = () => {
     return (
@@ -12,7 +12,7 @@ const NotFound = () => {
             <Typography>Page Not Found </Typography>
             <Link to="/">Home</Link>
         </div>
-    );
-};
+    )
+}
 
-export default NotFound;
+export default NotFound

@@ -11,8 +11,100 @@ import Slider from "@material-ui/core/Slider"
 import Typography from '@material-ui/core/Typography'
 import { useAlert } from "react-alert"
 import { categories } from './ProductCategory'
-
-
+import { BiCategoryAlt } from "react-icons/bi"
+//for Rating
+const marks = [
+    {
+        value: 0,
+        label: '0',
+    },
+    {
+        value: 1,
+        label: '1',
+    },
+    {
+        value: 2,
+        label: '2',
+    },
+    {
+        value: 3,
+        label: '3',
+    },
+    {
+        value: 4,
+        label: '4',
+    },
+    {
+        value: 5,
+        label: '5'
+    }
+]
+//for product
+const priceMarks = [
+    {
+        value: 0,
+        scaledValue: 0,
+        label: "0"
+    },
+    {
+        value: 25,
+        scaledValue: 1000,
+        label: ""
+    },
+    {
+        value: 50,
+        scaledValue: 5000,
+        label: "5k"
+    },
+    {
+        value: 75,
+        scaledValue: 10000,
+        label: ""
+    },
+    {
+        value: 100,
+        scaledValue: 50000,
+        label: "50k"
+    },
+    {
+        value: 125,
+        scaledValue: 100000,
+        label: ""
+    },
+    {
+        value: 150,
+        scaledValue: 1000000,
+        label: "10L"
+    },
+    {
+        value: 175,
+        scaledValue: 1000000,
+        label: ""
+    },
+    {
+        value: 200,
+        scaledValue: 10000000,
+        label: "10Cr"
+    },
+]
+const scaleValues = (valueArray) => {
+    return [scale(valueArray[0]), scale(valueArray[1])]
+}
+const scale = (value) => {
+    if (value === undefined) {
+        return undefined
+    }
+    const previousMarkIndex = Math.floor(value / 25)
+    const previousMark = priceMarks[previousMarkIndex]
+    const remainder = value % 25
+    if (remainder === 0) {
+        return previousMark.scaledValue
+    }
+    const nextMark = priceMarks[previousMarkIndex + 1]
+    const increment = (nextMark.scaledValue - previousMark.scaledValue) / 25
+    return remainder * increment + previousMark.scaledValue
+}
+//
 const Products = () => {
 
     const dispatch = useDispatch()
@@ -21,31 +113,95 @@ const Products = () => {
     )
     const alert = useAlert()
     const [currentPage, setCurrentPage] = useState(1)
-    const [price, setPrice] = useState([0, 25000])
     const [category, setCategory] = useState("")
-    const [ratings, setRatings] = useState(0)
+    const [ratings, setRatings] = useState([0, 5])
 
+
+    const [value, setValue] = useState([25, 50])
+    const [price, setPrice] = useState(scaleValues(value))
+    const handleChange = (event, newValue) => {
+        setValue(newValue)
+        setPrice(scaleValues(newValue))
+    }
     const setCurrentPageNo = (e) => {
         setCurrentPage(e)
     }
-    const priceHandler = (event, newPrice) => {
-        setPrice(newPrice)
-    }
-
     const keyword = useParams().keyword
     let count = filteredProductsCount
+    const doSearch = () => {
+        dispatch(getProduct(keyword, currentPage, price, category, ratings))
+    }
     useEffect(() => {
         if (error) {
             alert.error(error)
             dispatch(clearErrors)
         }
-        dispatch(getProduct(keyword, currentPage, price, category, ratings))
-    }, [dispatch, keyword, currentPage, price, category, ratings, alert, error])
+        doSearch()
+    }, [dispatch, keyword, currentPage, category, alert, error])
+
+
     return (
         <Fragment>
             {loading ? <Loader /> :
                 (<Fragment>
                     <MetaData title="PRODUCTS -- ECOMMERCE" />
+                    <div className="filterBox">
+
+                        <fieldset>
+                            <Typography component="legend">
+                                ₹_Price_₹
+                            </Typography>
+                            <Slider
+                                style={{ maxWidth: 170 }}
+                                value={value}
+                                min={0}
+                                step={1}
+                                max={200}
+                                marks={priceMarks}
+                                scale={scaleValues}
+                                onChange={handleChange}
+                                aria-labelledby="non-linear-slider"
+                            />
+                            <span className='category-link' onClick={() => doSearch()}>₹Range: {JSON.stringify(scaleValues(value))}</span>
+                        </fieldset>
+
+                        <fieldset>
+                            <Typography style={{ display: 'flex', alignItems: 'center' }} component="legend">
+                                <BiCategoryAlt />
+                                _Category_
+                                <BiCategoryAlt />
+                            </Typography>
+                            <ul className="categoryBox">
+                                {categories.map((category) => (
+                                    <li
+                                        className="category-link"
+                                        key={category}
+                                        onClick={() => setCategory(category)}
+                                    >
+                                        {category}
+                                    </li>
+                                ))}
+                            </ul>
+                        </fieldset>
+
+                        <fieldset>
+                            <Typography component="legend">★_Ratings_★</Typography>
+                            <Slider
+                                value={ratings}
+                                onChange={(e, newRating) => {
+                                    setRatings(newRating)
+                                }}
+                                style={{ maxWidth: 170 }}
+                                aria-labelledby="range-slider"
+                                marks={marks}
+                                min={0}
+                                max={5}
+                            />
+                        </fieldset>
+                        <div className='searchBtn'>
+                            <button onClick={() => doSearch()}>Search</button>
+                        </div>
+                    </div>
                     <h2 className="productsHeading">Products</h2>
                     <div className="products">
                         {products &&
@@ -53,47 +209,6 @@ const Products = () => {
                                 <ProductCard key={product._id} product={product} />
                             ))}
                     </div>
-
-                    <div className="filterBox">
-
-                        <Typography>Price</Typography>
-                        <Slider
-                            value={price}
-                            onChange={priceHandler}
-                            valueLabelDisplay="auto"
-                            aria-labelledby="range-slider"
-                            min={0}
-                            max={25000}
-                        />
-
-                        <Typography>Categories</Typography>
-                        <ul className="categoryBox">
-                            {categories.map((category) => (
-                                <li
-                                    className="category-link"
-                                    key={category}
-                                    onClick={() => setCategory(category)}
-                                >
-                                    {category}
-                                </li>
-                            ))}
-                        </ul>
-
-                        <fieldset>
-                            <Typography component="legend">Ratings Above</Typography>
-                            <Slider
-                                value={ratings}
-                                onChange={(e, newRating) => {
-                                    setRatings(newRating);
-                                }}
-                                aria-labelledby="continuous-slider"
-                                valueLabelDisplay="auto"
-                                min={0}
-                                max={5}
-                            />
-                        </fieldset>
-                    </div>
-
                     {resultPerPage < count && (
                         <div className="paginationBox">
                             <Pagination
