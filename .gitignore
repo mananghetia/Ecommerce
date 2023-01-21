@@ -8,8 +8,8 @@
 # testing
 /frontend/coverage
 
-# production for heroku you need to ignore below file, for vercel you don't have to ignore it
-# /frontend/build
+# production 
+/frontend/build
 
 # misc
 /backend/config/config.env

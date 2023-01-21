@@ -26,9 +26,9 @@ This is a **MERN** stack 🛒Shopping Website🌐.
 
 <img src="./frontend/src/images/Stripe.png" height=28 alt="Stripe">
 
-## Deployed On :
+<!-- ## Deployed On :
 
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) -->
 
 <br/>
 <br/>

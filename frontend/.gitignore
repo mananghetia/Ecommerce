@@ -8,10 +8,8 @@
 # testing
 /coverage
 
-# production for heroku you need to ignore below file, for vercel you don't have to ignore it
-# /build
-
 # production 
+/build
 
 # misc
 .DS_Store
