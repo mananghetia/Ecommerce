@@ -3,7 +3,7 @@
 
 This is a **MERN** stack 🛒Shopping Website🌐.
 
-<!-- 🔗[Visit Now](https://ecommerce-mananghetia.herokuapp.com/) 🚀 -->
+🔗[Visit Now](https://ecommerce-pzza.onrender.com/) 🚀
 
 <br/>
 <br/>
@@ -26,9 +26,9 @@ This is a **MERN** stack 🛒Shopping Website🌐.
 
 <img src="./frontend/src/images/Stripe.png" height=28 alt="Stripe">
 
-<!-- ## Deployed On :
+## Deployed On :
 
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) -->
+<img src="./frontend/src/images/Render.png" height=28 alt="Render">
 
 <br/>
 <br/>
